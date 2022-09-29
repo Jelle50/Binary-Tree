@@ -10,15 +10,19 @@ namespace Binary_Tree
     public class Node<T>
     {
         public T value { get; set; }
+        //public T naam { get; set; }
+        //public Node<T> ParentNode { get; set; }
+        public Node<T> LeftChild;
+        public Node<T> RightChild;
 
         public Node(T data)
         {
-            value = data;
+            this.value = data;
+            this.LeftChild = null;
+            this.RightChild = null;
         }
 
-        public Node<T> ParentNode { get; set; }
-        public Node<T> LeftChild { get; set; }
-        public Node<T> RightChild { get; set; }
+
 
 
 
