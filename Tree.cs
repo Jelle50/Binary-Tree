@@ -33,26 +33,32 @@ namespace Binary_Tree
 
         private void AddNodeRC(ref Node<T> N, Node<T> Parentnode, T value)
         {
-
+            //Als Node gelijk is aan parentnode. voeg dan toe als mogelijk is
             if (N == Parentnode)
             {
+                //De leftchild van node N is nog leeg
                 if (N.LeftChild == null)
                 {
                     Node<T> NieuweNode = new Node<T>(value);
                     N.LeftChild = NieuweNode;
                     Count++;
                 }
+                //De rightchild van node N is nog leeg
                 else if (N.RightChild == null)
                 {
                     Node<T> NieuweNode = new Node<T>(value);
                     N.RightChild = NieuweNode;
                     Count++;
                 }
+
+                //Als beide Childnodes al bestaan. Voeg dan niet toe
                 else
                 {
+                    //Print stuk tekst omdat er geen ruimte is voor een nieuwe childnode
                     Console.Write("Deze node heeft al twee childnodes \n");
                     return;
                 }
+
 
                 if ((N.LeftChild != null) & (N.RightChild != null))
                 {
@@ -60,15 +66,15 @@ namespace Binary_Tree
                 }
             }
 
-
+            //Als N niet gelijk is aan Parentnode. Voer de method recursief uit op leftchild van N
             if (N.LeftChild != null)
             {
                 AddNodeRC(ref N.LeftChild, Parentnode, value);
 
             }
 
+            //Als N niet gelijk is aan Parentnode. Voer de method recursief uit op rightchild van N
             if (N.RightChild != null)
-            //else (RCNode.RightChild != null)
             {
                 AddNodeRC(ref N.RightChild, Parentnode, value);
             }
@@ -110,6 +116,7 @@ namespace Binary_Tree
             CountLeafNodeRC(ref Root);
         }
 
+        //Tellen leafnodes in een boom
         private void CountLeafNodeRC(ref Node<T> N)
         {
             //tel 1 bij leafcount als nodes geen childnodes heeft.
@@ -176,7 +183,7 @@ namespace Binary_Tree
             SumNodes = SumAllNodesRC(Root);
 
             //print de som van alle nodes
-            Console.WriteLine("De som van alles nodis is: \n{0}",SumNodes.ToString());
+            Console.WriteLine("De som van alle nodes is: \n{0}",SumNodes.ToString());
 
             return SumNodes;
         }
@@ -192,8 +199,10 @@ namespace Binary_Tree
                 return tmp;
             }
 
+            //Value van N aan temp toevoegen 
             tmp = N.value;
 
+            //Recursief values met elkaar optellen
             return tmp + SumAllNodesRC(N.LeftChild) + SumAllNodesRC(N.RightChild);
         }
     }

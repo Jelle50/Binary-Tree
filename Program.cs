@@ -29,26 +29,28 @@ namespace Binary_Tree
             boom.AddNode(boom.Root.LeftChild.LeftChild, 80);
             boom.AddNode(boom.Root.LeftChild.LeftChild, 90);
             boom.AddNode(boom.Root.LeftChild.RightChild, 100);
+
             Console.WriteLine("Het aantal nodes binnen deze boom is {0}",boom.Count);
             Console.WriteLine("Het aantal leafnodes binnen deze boom is {0}",boom.LeafCount);
             boom.SumAllNodes();
             Console.WriteLine("\n");
             //Als je 20 weghaalt krijg je deze boom.
             //Dit stukje code laat zien dat de count nodes en countleaf correct blijft
-            //                                     10              CountNodes = 5
+            //                                     10              CountNodes = 4
             //                                         \           CountLeafs = 2
             //                                          30         SumOfall nodes = 170
             //                                        /    \
             //                                       60    70
             
-            //Verwijder node 20.
-            boom.RemoveNode(boom.Root.LeftChild);
+            //Verwijder node 20 uit de boom.
+            boom.RemoveNode(boom.Root.LeftChild)
             Console.WriteLine("Het aantal nodes in de nieuwe boom is {0}", boom.Count);
             Console.WriteLine("Het aantal leafnodes in de nieuwe boom is {0}", boom.LeafCount);
             boom.SumAllNodes();
+            Console.WriteLine("\n");
 
 
-            //                                   Node A                 CountNodes = 3
+            //                                   Node A                 CountNodes = 5
             //                                /         \               CountLeafs = 2
             //                            Node B          Node C        SumOfall nodes = Node A Node B Node D 
             //                            /              /                               Node C Node E
@@ -60,9 +62,13 @@ namespace Binary_Tree
             boom2.AddNode(boom2.Root, "Node C ");
             boom2.AddNode(boom2.Root.LeftChild, "Node D ");
             boom2.AddNode(boom2.Root.RightChild, "Node E ");
-            Console.WriteLine(boom2.Count);
-            Console.WriteLine(boom2.LeafCount);
+
+
+            Console.WriteLine("Het aantal nodes in de nieuwe boom is {0}",boom2.Count);
+            Console.WriteLine("Het aantal leafnodes in de nieuwe boom is {0}",boom2.LeafCount);
             boom2.SumAllNodes();
+            Console.WriteLine("\n");
+
 
             //                                    10.2              CountNodes = 3
             //                                /         \           CountLeafs = 2
@@ -71,8 +77,10 @@ namespace Binary_Tree
             Tree<double> boom3 = new Tree<double>(10.2);
             boom3.AddNode(boom3.Root, 20.9);
             boom3.AddNode(boom3.Root, 30.2);
-            Console.WriteLine("Het aantal nodes in boom3 is {0}", boom3.Count);
-            Console.WriteLine("Het aantal leafnodes in boom3 is {0}", boom3.LeafCount);
+
+
+            Console.WriteLine("Het aantal nodes in de nieuwe boom is {0}",   boom3.Count);
+            Console.WriteLine("Het aantal leafnodes in de nieuwe boom is {0}", boom3.LeafCount);
             boom3.SumAllNodes();
 
             Console.ReadLine();
