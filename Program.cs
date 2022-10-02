@@ -30,8 +30,8 @@ namespace Binary_Tree
             boom.AddNode(boom.Root.LeftChild.LeftChild, 90);
             boom.AddNode(boom.Root.LeftChild.RightChild, 100);
 
-            Console.WriteLine("Het aantal nodes binnen deze boom is {0}",boom.Count);
-            Console.WriteLine("Het aantal leafnodes binnen deze boom is {0}",boom.LeafCount);
+            Console.WriteLine("Het aantal nodes binnen deze boom is {0}.",boom.Count);
+            Console.WriteLine("Het aantal leafnodes binnen deze boom is {0}.",boom.LeafCount);
             boom.SumAllNodes();
             Console.WriteLine("\n");
             //Als je 20 weghaalt krijg je deze boom.
@@ -44,8 +44,8 @@ namespace Binary_Tree
 
             //Verwijder node 20 uit de boom.
             boom.RemoveNode(boom.Root.LeftChild);
-            Console.WriteLine("Het aantal nodes in de nieuwe boom is {0}", boom.Count);
-            Console.WriteLine("Het aantal leafnodes in de nieuwe boom is {0}", boom.LeafCount);
+            Console.WriteLine("Het aantal nodes in de nieuwe boom is {0}.", boom.Count);
+            Console.WriteLine("Het aantal leafnodes in de nieuwe boom is {0}.", boom.LeafCount);
             boom.SumAllNodes();
             Console.WriteLine("\n");
 
@@ -64,8 +64,8 @@ namespace Binary_Tree
             boom2.AddNode(boom2.Root.RightChild, "Node E ");
 
 
-            Console.WriteLine("Het aantal nodes in de nieuwe boom is {0}",boom2.Count);
-            Console.WriteLine("Het aantal leafnodes in de nieuwe boom is {0}",boom2.LeafCount);
+            Console.WriteLine("Het aantal nodes in de nieuwe boom is {0}.",boom2.Count);
+            Console.WriteLine("Het aantal leafnodes in de nieuwe boom is {0}.",boom2.LeafCount);
             boom2.SumAllNodes();
             Console.WriteLine("\n");
 
@@ -79,8 +79,8 @@ namespace Binary_Tree
             boom3.AddNode(boom3.Root, 30.2);
 
 
-            Console.WriteLine("Het aantal nodes in de nieuwe boom is {0}",   boom3.Count);
-            Console.WriteLine("Het aantal leafnodes in de nieuwe boom is {0}", boom3.LeafCount);
+            Console.WriteLine("Het aantal nodes in de nieuwe boom is {0}.",   boom3.Count);
+            Console.WriteLine("Het aantal leafnodes in de nieuwe boom is {0}.", boom3.LeafCount);
             boom3.SumAllNodes();
 
             Console.ReadLine();

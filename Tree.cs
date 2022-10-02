@@ -26,15 +26,15 @@ namespace Binary_Tree
             LeafCount = 1;
         }
 
-        public void AddNode(Node<T> Parentnode, T value)
+        public void AddNode(Node<T> ParentNode, T value)
         {
-            AddNodeRC(ref Root, Parentnode, value);
+            AddNodeRC(ref Root, ParentNode, value);
         }
 
-        private void AddNodeRC(ref Node<T> N, Node<T> Parentnode, T value)
+        private void AddNodeRC(ref Node<T> N, Node<T> ParentNode, T value)
         {
-            //Als Node gelijk is aan parentnode. voeg dan toe als mogelijk is
-            if (N == Parentnode)
+            //Als Node gelijk is aan ParentNode. voeg dan toe als mogelijk is
+            if (N == ParentNode)
             {
                 //De leftchild van node N is nog leeg
                 if (N.LeftChild == null)
@@ -55,7 +55,7 @@ namespace Binary_Tree
                 else
                 {
                     //Print stuk tekst omdat er geen ruimte is voor een nieuwe childnode
-                    Console.Write("Deze node heeft al twee childnodes \n");
+                    Console.Write("Node {0} heeft al twee childnodes. \n",N.value);
                     return;
                 }
 
@@ -66,17 +66,17 @@ namespace Binary_Tree
                 }
             }
 
-            //Als N niet gelijk is aan Parentnode. Voer de method recursief uit op leftchild van N
+            //Als N niet gelijk is aan ParentNode. Voer de method recursief uit op leftchild van N
             if (N.LeftChild != null)
             {
-                AddNodeRC(ref N.LeftChild, Parentnode, value);
+                AddNodeRC(ref N.LeftChild, ParentNode, value);
 
             }
 
-            //Als N niet gelijk is aan Parentnode. Voer de method recursief uit op rightchild van N
+            //Als N niet gelijk is aan ParentNode. Voer de method recursief uit op rightchild van N
             if (N.RightChild != null)
             {
-                AddNodeRC(ref N.RightChild, Parentnode, value);
+                AddNodeRC(ref N.RightChild, ParentNode, value);
             }
 
 
@@ -139,20 +139,20 @@ namespace Binary_Tree
         }
 
         //Public method om een node te verwijderen
-        public void RemoveNode(Node<T> Parentnode)
+        public void RemoveNode(Node<T> ParentNode)
         {
             //De method voor het verwijderen node. Input is root als ref en de node die verwijderd moet worden.
-            RemoveNodeRC(ref Root, Parentnode);
+            RemoveNodeRC(ref Root, ParentNode);
 
             //Opnieuw de nodes en leafs tellen
             CountNodes();
             CountLeafNode();
         }
 
-        private void RemoveNodeRC(ref Node<T> N, Node<T> Parentnode)
+        private void RemoveNodeRC(ref Node<T> N, Node<T> ParentNode)
         {
-            //Is Node N gelijk aan de parentnode
-            if (N == Parentnode)
+            //Is Node N gelijk aan de ParentNode
+            if (N == ParentNode)
             {
                 //Verwijder Node N en stop method
                 N = null;
@@ -162,14 +162,14 @@ namespace Binary_Tree
             //Recursief de linker child bekijken
             if (N.LeftChild != null)
             {
-                RemoveNodeRC(ref N.LeftChild, Parentnode);
+                RemoveNodeRC(ref N.LeftChild, ParentNode);
 
             }
 
             //Recursief de redchter child bekijken
             if (N.RightChild != null)
             {
-                RemoveNodeRC(ref N.RightChild, Parentnode);
+                RemoveNodeRC(ref N.RightChild, ParentNode);
             }
 
         }
