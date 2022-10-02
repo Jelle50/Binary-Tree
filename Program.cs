@@ -21,14 +21,18 @@ namespace Binary_Tree
             boom.AddNode(boom.Root.LeftChild, 40);
             boom.AddNode(boom.Root.LeftChild, 50);
             boom.AddNode(boom.Root.RightChild, 60);
+
+            //Voeg een derde Node toe aan de root (dit geeft een error message)
             boom.AddNode(boom.Root.RightChild, 70);
+
+
             boom.AddNode(boom.Root.LeftChild.LeftChild, 80);
             boom.AddNode(boom.Root.LeftChild.LeftChild, 90);
             boom.AddNode(boom.Root.LeftChild.RightChild, 100);
-            Console.WriteLine(boom.Count);
-            Console.WriteLine(boom.LeafCount);
+            Console.WriteLine("Het aantal nodes binnen deze boom is {0}",boom.Count);
+            Console.WriteLine("Het aantal leafnodes binnen deze boom is {0}",boom.LeafCount);
             boom.SumAllNodes();
-
+            Console.WriteLine("\n");
             //Als je 20 weghaalt krijg je deze boom.
             //Dit stukje code laat zien dat de count nodes en countleaf correct blijft
             //                                     10              CountNodes = 5
@@ -36,18 +40,28 @@ namespace Binary_Tree
             //                                          30         SumOfall nodes = 170
             //                                        /    \
             //                                       60    70
-            //                    
-            //                    
+            
+            //Verwijder node 20.
             boom.RemoveNode(boom.Root.LeftChild);
+            Console.WriteLine("Het aantal nodes in de nieuwe boom is {0}", boom.Count);
+            Console.WriteLine("Het aantal leafnodes in de nieuwe boom is {0}", boom.LeafCount);
             boom.SumAllNodes();
-            Console.WriteLine("Het aantal nodes in de nieuwe boom3 is {0}", boom.Count);
-            Console.WriteLine("Het aantal leafnodes in de nieuwe boom3 is {0}", boom.LeafCount);
 
-            Tree<string> boom2 = new Tree<string>("Node A");
-            boom2.AddNode(boom2.Root, "Node B");
-            boom2.AddNode(boom2.Root, "Node C");
-            boom2.AddNode(boom2.Root.LeftChild, "Node D");
-            boom2.AddNode(boom2.Root.RightChild, "Node E");
+
+            //                                   Node A                 CountNodes = 3
+            //                                /         \               CountLeafs = 2
+            //                            Node B          Node C        SumOfall nodes = Node A Node B Node D 
+            //                            /              /                               Node C Node E
+            //                         Node D           Node E
+
+
+            Tree<string> boom2 = new Tree<string>("Node A ");
+            boom2.AddNode(boom2.Root, "Node B ");
+            boom2.AddNode(boom2.Root, "Node C ");
+            boom2.AddNode(boom2.Root.LeftChild, "Node D ");
+            boom2.AddNode(boom2.Root.RightChild, "Node E ");
+            Console.WriteLine(boom2.Count);
+            Console.WriteLine(boom2.LeafCount);
             boom2.SumAllNodes();
 
             //                                    10.2              CountNodes = 3

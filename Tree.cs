@@ -11,13 +11,14 @@ namespace Binary_Tree
     public class Tree<T>
     {
 
+        //Aanmaken properties
         public Node<T> Root;
-
         public int Count;
         public int LeafCount;
 
 
 
+        //Constructor aanmaken voor tree
         public Tree(T value)
         {
             Root = new Node<T>(value);
@@ -28,26 +29,24 @@ namespace Binary_Tree
         public void AddNode(Node<T> Parentnode, T value)
         {
             AddNodeRC(ref Root, Parentnode, value);
-            //CountNodes();
-            //CountLeafNode();
         }
-        private void AddNodeRC(ref Node<T> RCNode, Node<T> Parentnode, T value)
+
+        private void AddNodeRC(ref Node<T> N, Node<T> Parentnode, T value)
         {
 
-            if (RCNode == Parentnode)
+            if (N == Parentnode)
             {
-                if (RCNode.LeftChild == null)
+                if (N.LeftChild == null)
                 {
                     Node<T> NieuweNode = new Node<T>(value);
-                    RCNode.LeftChild = NieuweNode;
+                    N.LeftChild = NieuweNode;
                     Count++;
                 }
-                else if (RCNode.RightChild == null)
+                else if (N.RightChild == null)
                 {
                     Node<T> NieuweNode = new Node<T>(value);
-                    RCNode.RightChild = NieuweNode;
+                    N.RightChild = NieuweNode;
                     Count++;
-                    //LeafCount++;
                 }
                 else
                 {
@@ -55,23 +54,23 @@ namespace Binary_Tree
                     return;
                 }
 
-                if ((RCNode.LeftChild != null) & (RCNode.RightChild != null))
+                if ((N.LeftChild != null) & (N.RightChild != null))
                 {
                     LeafCount++;
                 }
             }
 
 
-            if (RCNode.LeftChild != null)
+            if (N.LeftChild != null)
             {
-                AddNodeRC(ref RCNode.LeftChild, Parentnode, value);
+                AddNodeRC(ref N.LeftChild, Parentnode, value);
 
             }
 
-            if (RCNode.RightChild != null)
+            if (N.RightChild != null)
             //else (RCNode.RightChild != null)
             {
-                AddNodeRC(ref RCNode.RightChild, Parentnode, value);
+                AddNodeRC(ref N.RightChild, Parentnode, value);
             }
 
 
@@ -79,25 +78,30 @@ namespace Binary_Tree
 
         private void CountNodes()
         {
-            Count = 1;
+            Count = 0;
             CountNodesRC(ref Root);
         }
 
+        //Private method om het aantal nodes te tellen
         private void CountNodesRC(ref Node<T> N)
         {
+            if (N != null)
+            {
+                Count++;
+            }
+
             if (N.LeftChild != null)
             {
                 CountNodesRC(ref N.LeftChild);
-                Count++;
 
             }
 
             if (N.RightChild != null)
-            //else (RCNode.RightChild != null)
             {
                 CountNodesRC(ref N.RightChild);
-                Count++;
+
             }
+
         }
 
         private void CountLeafNode()
@@ -108,43 +112,54 @@ namespace Binary_Tree
 
         private void CountLeafNodeRC(ref Node<T> N)
         {
+            //tel 1 bij leafcount als nodes geen childnodes heeft.
             if ((N.LeftChild == null) & (N.RightChild == null))
             {
                 LeafCount++;
             }
+
+            //Als de linker child bestaat. Recursieve functie uitvoeren.
             if (N.LeftChild != null)
             {
                 CountLeafNodeRC(ref N.LeftChild);
             }
 
+            //Als de rechter child bestaat. Recursieve functie uitvoeren.
             if (N.RightChild != null)
             {
                 CountLeafNodeRC(ref N.RightChild);
             }
         }
 
+        //Public method om een node te verwijderen
         public void RemoveNode(Node<T> Parentnode)
         {
+            //De method voor het verwijderen node. Input is root als ref en de node die verwijderd moet worden.
             RemoveNodeRC(ref Root, Parentnode);
+
+            //Opnieuw de nodes en leafs tellen
             CountNodes();
             CountLeafNode();
         }
 
         private void RemoveNodeRC(ref Node<T> N, Node<T> Parentnode)
         {
+            //Is Node N gelijk aan de parentnode
             if (N == Parentnode)
             {
+                //Verwijder Node N en stop method
                 N = null;
                 return;
             }
 
-
+            //Recursief de linker child bekijken
             if (N.LeftChild != null)
             {
                 RemoveNodeRC(ref N.LeftChild, Parentnode);
 
             }
 
+            //Recursief de redchter child bekijken
             if (N.RightChild != null)
             {
                 RemoveNodeRC(ref N.RightChild, Parentnode);
@@ -152,27 +167,34 @@ namespace Binary_Tree
 
         }
 
+        //Private Method om alle nodes te tellen.
         public T SumAllNodes()
         {
-            T sum1;
-            sum1 = SumAllNodesRC(Root);
+            //Maak lege variabele met type T
+            T SumNodes;
 
-            Console.WriteLine(sum1.ToString());
+            SumNodes = SumAllNodesRC(Root);
 
-            return sum1;
+            //print de som van alle nodes
+            Console.WriteLine("De som van alles nodis is: \n{0}",SumNodes.ToString());
+
+            return SumNodes;
         }
 
         private T SumAllNodesRC(Node<T> N)
         {
+            //Dynamic temp getal zodat value T opgeteld kan worden
             dynamic tmp = default(T);
+
+            //Als Node n null is. Return temp getal
             if (N == null)
             {
                 return tmp;
             }
+
             tmp = N.value;
-            tmp += SumAllNodesRC(N.LeftChild);
-            tmp += SumAllNodesRC(N.RightChild);
-            return tmp;
+
+            return tmp + SumAllNodesRC(N.LeftChild) + SumAllNodesRC(N.RightChild);
         }
     }
 }
