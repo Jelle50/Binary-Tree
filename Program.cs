@@ -41,9 +41,9 @@ namespace Binary_Tree
             //                                          30         SumOfall nodes = 170
             //                                        /    \
             //                                       60    70
-            
+
             //Verwijder node 20 uit de boom.
-            boom.RemoveNode(boom.Root.LeftChild)
+            boom.RemoveNode(boom.Root.LeftChild);
             Console.WriteLine("Het aantal nodes in de nieuwe boom is {0}", boom.Count);
             Console.WriteLine("Het aantal leafnodes in de nieuwe boom is {0}", boom.LeafCount);
             boom.SumAllNodes();
